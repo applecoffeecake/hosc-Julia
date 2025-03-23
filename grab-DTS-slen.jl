@@ -21,18 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 =#
-function grabDTS(L,M)
+function grabDTSslen(L,M)
     if M == 1
         DTS = trivial_dts(L);
     elseif M == 2;
         DTS = skokeefe(L);
     elseif M == 3 || M == 4
-        DTS_name_list = readdir("scope-optimal-DTSs/");
+        DTS_name_list = readdir("sum-of-lengths-scope-optimal-DTSs/");
         DTS_index = findlast(startswith.(DTS_name_list, string(L)*"-"*string(M)));
         if DTS_index == nothing
             throw("L and M combination is currently unsupported!")
         else
-            DTS = readdlm("scope-optimal-DTSs/"*DTS_name_list[DTS_index], Int64);
+            DTS = readdlm("sum-of-lengths-scope-optimal-DTSs/"*DTS_name_list[DTS_index], Int64);
         end 
     elseif L == 1 && M == 5
         DTS = [0 1 4 10 12 17]
